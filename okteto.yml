@@ -1,8 +1,8 @@
-name: planner-deploy
+name: task-manager
 
 build:
 
-  planner-deploy:
+  task-manager:
     context: .
     dockerfile: Docker-worker-dev.dockerfile
     image: torrespro/worker:v1.0
@@ -11,10 +11,10 @@ deploy:
   #- kubectl apply -f k8s/ingress.yml
   - kubectl apply -f k8s
   #- kubectl apply -f k8s/network-policies
-#  - kubectl rollout restart deploy planner-deploy
+#  - kubectl rollout restart deploy task-manager
 
 dev:
-  planner-deploy:
+  task-manager:
     image: maven:3.6.3-openjdk-11
     command:
       - mvn
