@@ -1,7 +1,7 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    name: mca-app
-  name: mca-app
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  labels:
+#    name: mca-app
+#  name: mca-app
