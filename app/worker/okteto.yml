@@ -1,21 +1,21 @@
-name: task-manager
+name: worker-deployment
 
 build:
 
-  task-manager:
+  worker-deployment:
     context: .
     dockerfile: Docker-worker-dev.dockerfile
     image: torrespro/worker:v1.0
 
 deploy:
   #- kubectl apply -f k8s/ingress.yml
-  - kubectl apply -f k8s
+  - kubectl apply -f ../../k8s
   #- kubectl apply -f k8s/network-policies
 #  - kubectl rollout restart deploy task-manager
 
 dev:
-  task-manager:
-    image: maven:3.6.3-openjdk-11
+  worker-deployment:
+    image: maven:3.8.6-jdk-8
     command:
       - mvn
       - spring-boot:run
@@ -27,5 +27,5 @@ dev:
       #- 8080:8080
       - 35729:35729
     volumes:
-      - /root/.m2
+      - ~/.m2
 

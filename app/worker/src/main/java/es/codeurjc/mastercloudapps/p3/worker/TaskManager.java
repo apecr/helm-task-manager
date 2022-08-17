@@ -63,7 +63,7 @@ public class TaskManager {
 		taskRepository.save(TaskHistory.builder().text(newTask.text).date(new Date()).build());
 
 		String result = upperCaseTask.toUpperCase(newTask.text);
-		// result = "-"+result+"-";
+		result = "-"+result+"-";
 
 		// Simulate long processing
 		for (int i = 0; i < 10; i++) {
