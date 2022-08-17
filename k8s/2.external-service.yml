@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-service-deployment
+  namespace: mca-app
+spec:
+  selector:
+    matchLabels:
+      app: external-service
+  template:
+    metadata:
+      labels:
+        app: external-service
+    spec:
+      securityContext:
+        runAsUser: 1001
+      containers:
+      - name: external-service
+        image: fjvela/urjc-fjvela-external-service:1.0.1
+        ports:
+          - containerPort: 9090
+        securityContext:
+          allowPrivilegeEscalation: false
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: external-service
+  namespace: mca-app
+  labels:
+    app: external-service
+spec:
+  ports:
+  - name: external-service-port
+    protocol: TCP
+    port: 9090
+    targetPort: 9090
+  selector:
+    app: external-service
+  type: ClusterIP
+
+
