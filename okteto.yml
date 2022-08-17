@@ -1,0 +1,31 @@
+name: planner-deploy
+
+build:
+
+  planner-deploy:
+    context: .
+    dockerfile: Docker-worker-dev.dockerfile
+    image: torrespro/worker:v1.0
+
+deploy:
+  #- kubectl apply -f k8s/ingress.yml
+  - kubectl apply -f k8s
+  #- kubectl apply -f k8s/network-policies
+#  - kubectl rollout restart deploy planner-deploy
+
+dev:
+  planner-deploy:
+    image: maven:3.6.3-openjdk-11
+    command:
+      - mvn
+      - spring-boot:run
+    workdir: /src
+    sync:
+      - .:/src
+    forward:
+      - 5005:5005
+      #- 8080:8080
+      - 35729:35729
+    volumes:
+      - /root/.m2
+
