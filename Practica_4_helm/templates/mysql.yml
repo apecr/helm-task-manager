@@ -6,7 +6,7 @@ metadata:
  name: {{ .Release.Name }}-mysql-pv
  namespace: mca-app
  labels:
-   app: mysql
+   app: {{ .Release.Name }}-mysql
    type: local
 spec:
   storageClassName: {{ .Release.Name }}-{{ .Values.persistentVolumes.storageClasses.mysql }}
@@ -23,7 +23,7 @@ metadata:
   name: {{ .Release.Name }}-mysql-pvc
   namespace: mca-app
   labels:
-    app: mysql
+    app: {{ .Release.Name }}-mysql
 spec:
   {{- if .Values.persistentVolumes.enableStorageClass }}
   storageClassName: {{ .Release.Name }}-{{ .Values.persistentVolumes.storageClasses.mysql }}
