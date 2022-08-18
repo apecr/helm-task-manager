@@ -1,0 +1,34 @@
+{{- if .Values.networkPolicies.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-planner-topo
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ .Release.Name }}-planner
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: {{ .Release.Name }}-toposervice
+    ports:
+    - port: 8181
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-topo-planner
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ .Release.Name }}-toposervice
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: {{ .Release.Name }}-planner
+      ports:
+      - port: 8181
+{{- end }}        

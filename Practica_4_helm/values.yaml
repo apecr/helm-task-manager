@@ -1,0 +1,38 @@
+ingress:
+  enabled: true
+  host: "cluster-ip"
+  serviceType: LoadBalancer
+
+persistentVolumes:
+  create: true
+  enableStorageClass: true
+  storageClasses:
+    mysql: mysql
+    mongo: mongodb
+    rabbit: rabbitmq
+
+networkPolicies:
+  enabled: false
+
+services:
+  mongodb:
+    image: mongo
+    tag: "5.0.6-focal"
+  mysql:
+    image: mysql
+    tag: "8.0.28"
+  rabbitmq:
+    image: rabbitmq
+    tag: "3.9-management"
+  server:
+    image: codeurjc/server
+    tag: "v1.0"
+  planner:
+    image: adagber/planner
+    tag: "v1.0"
+  toposervice:
+    image: codeurjc/toposervice
+    tag: "v1.0"
+  weatherservice:
+    image: codeurjc/weatherservice
+    tag: "v1.0"

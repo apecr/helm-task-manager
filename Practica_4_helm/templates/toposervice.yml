@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-toposervice-deploy
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-toposervice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-toposervice
+    spec:
+      restartPolicy: Always
+      securityContext:
+        runAsUser: 1001
+      containers:
+      - name: {{ .Release.Name }}-toposervice
+        image: {{ .Values.services.toposervice.image }}:{{ .Values.services.toposervice.tag }}
+        env:
+        - name: SPRING_DATA_MONGODB_HOST
+          value: {{ .Release.Name }}-mongodb-service
+        - name: SPRING_DATA_MONGODB_PORT
+          value: "27017"
+        - name: SPRING_DATA_MONGODB_DATABASE
+          value: topoDB
+        - name: SPRING_DATA_MONGODB_AUTHENTICATION-DATABASE
+          value: admin
+        - name: SPRING_DATA_MONGODB_USERNAME
+          value: root
+        - name: SPRING_DATA_MONGODB_PASSWORD
+          value: password
+        ports:
+        - containerPort: 8181
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-toposervice-service
+  labels:
+    app: toposervice
+spec:
+  ports:
+  - port: 8181
+    targetPort: 8181
+    protocol: TCP
+    name: {{ .Release.Name }}-toposervice-port
+  selector:
+    app: {{ .Release.Name }}-toposervice
+  type: {{ include "serviceType" . }}

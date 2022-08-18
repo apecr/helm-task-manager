@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-weatherservice-deploy
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-weatherservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-weatherservice
+    spec:
+      restartPolicy: Always
+      securityContext:
+        runAsUser: 1001
+      containers:
+      - name: {{ .Release.Name }}-weatherservice
+        image: {{ .Values.services.weatherservice.image }}:{{ .Values.services.weatherservice.tag }}
+        env:
+        - name: GRPC_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: GRPC_PORT
+          value: "9090"
+        ports:
+        - containerPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-weatherservice-service
+  labels:
+    app: {{ .Release.Name }}-weatherservice
+spec:
+  ports:
+  - port: 9090
+    targetPort: 9090
+    protocol: TCP
+    name: {{ .Release.Name }}-weatherservice-port
+  selector:
+    app: {{ .Release.Name }}-weatherservice
+  type: ClusterIP
