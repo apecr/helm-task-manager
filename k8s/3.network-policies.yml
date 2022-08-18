@@ -1,166 +1,166 @@
-#kind: NetworkPolicy
-#apiVersion: networking.k8s.io/v1
-#metadata:
-#  name: default-deny-all
-# # namespace: mca-app
-#spec:
-#  podSelector: {}
-#  ingress: []
-#  egress: [] 
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: allow-external
-# # namespace: mca-app
-#spec:
-#  podSelector: 
-#    matchLabels:
-#      app: server
-#  ingress: 
-#    - from: []
-#  policyTypes:
-#    - Ingress
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: worker-allow-rabbit
-# # namespace: mca-app
-#spec:
-#  podSelector:
-#    matchLabels:
-#      app: worker
-#  egress:
-#  - to:     
-#    - podSelector:
-#        matchLabels:
-#          app: rabbitmq
-#  - ports:
-#    - port: 5672
-#      protocol: TCP
-#  policyTypes:
-#  - Egress
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: worker-allow-mysql
-# # namespace: mca-app
-#spec:
-#  podSelector:
-#    matchLabels:
-#      app: worker
-#  egress:
-#  - to:     
-#    - podSelector:
-#        matchLabels:
-#          app: mysql
-#  - ports:
-#    - port: 3306
-#      protocol: TCP
-#  policyTypes:
-#  - Egress
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: rabbit-allow
-# # namespace: mca-app
-#spec:
-#  podSelector:
-#    matchLabels:
-#      app: rabbitmq
-#  ingress:
-#  - from: 
-#     - podSelector:
-#        matchLabels:
-#          app: worker
-#     - podSelector:
-#         matchLabels:
-#           app: server
-#  - ports:
-#    - port: 5672
-#      protocol: TCP
-#  policyTypes:
-#    - Ingress
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: mysql-allow
-# # namespace: mca-app
-#spec:
-#  podSelector:
-#    matchLabels:
-#      app: mysql
-#  ingress:
-#  - from:
-#     - podSelector:  
-#         matchLabels:
-#           app: worker
-#  - ports:
-#    - protocol: TCP
-#      port: 3306
-#  policyTypes:
-#    - Ingress
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: mongo-allow
-# # namespace: mca-app
-#spec:
-#  podSelector:
-#    matchLabels:
-#      app: mongo
-#  ingress:
-#  - from:
-#    - podSelector:
-#        matchLabels:
-#          app: server
-#  - ports:
-#    - protocol: TCP
-#      port: 27017
-#  policyTypes:
-#    - Ingress
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: external-service-2-worker
-# # namespace: mca-app
-#spec:
-#  podSelector:
-#    matchLabels:
-#      app: external-service
-#  egress:
-#  - to:
-#    - podSelector:
-#        matchLabels:
-#          app: worker
-#    ports:
-#    - port: 9090
-#      protocol: TCP
-#  policyTypes:
-#    - Egress
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: NetworkPolicy
-#metadata:
-#  name: worker-2-external-service
-# # namespace: mca-app
-#spec:
-#  podSelector:
-#    matchLabels:
-#      app: worker
-#  ingress:
-#    - from:
-#      - podSelector:
-#          matchLabels:
-#            app: external-service
-#      ports:
-#      - port: 9090
-#        protocol: TCP
-#  policyTypes:
-#    - Ingress
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+ name: default-deny-all
+ namespace: mca-app
+spec:
+ podSelector: {}
+ ingress: []
+ egress: [] 
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: allow-external
+ namespace: mca-app
+spec:
+ podSelector: 
+   matchLabels:
+     app: server
+ ingress: 
+   - from: []
+ policyTypes:
+   - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: worker-allow-rabbit
+ namespace: mca-app
+spec:
+ podSelector:
+   matchLabels:
+     app: worker
+ egress:
+ - to:     
+   - podSelector:
+       matchLabels:
+         app: rabbitmq
+ - ports:
+   - port: 5672
+     protocol: TCP
+ policyTypes:
+ - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: worker-allow-mysql
+ namespace: mca-app
+spec:
+ podSelector:
+   matchLabels:
+     app: worker
+ egress:
+ - to:     
+   - podSelector:
+       matchLabels:
+         app: mysql
+ - ports:
+   - port: 3306
+     protocol: TCP
+ policyTypes:
+ - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: rabbit-allow
+ namespace: mca-app
+spec:
+ podSelector:
+   matchLabels:
+     app: rabbitmq
+ ingress:
+ - from: 
+    - podSelector:
+       matchLabels:
+         app: worker
+    - podSelector:
+        matchLabels:
+          app: server
+ - ports:
+   - port: 5672
+     protocol: TCP
+ policyTypes:
+   - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: mysql-allow
+ namespace: mca-app
+spec:
+ podSelector:
+   matchLabels:
+     app: mysql
+ ingress:
+ - from:
+    - podSelector:  
+        matchLabels:
+          app: worker
+ - ports:
+   - protocol: TCP
+     port: 3306
+ policyTypes:
+   - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: mongo-allow
+ namespace: mca-app
+spec:
+ podSelector:
+   matchLabels:
+     app: mongo
+ ingress:
+ - from:
+   - podSelector:
+       matchLabels:
+         app: server
+ - ports:
+   - protocol: TCP
+     port: 27017
+ policyTypes:
+   - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: external-service-2-worker
+ namespace: mca-app
+spec:
+ podSelector:
+   matchLabels:
+     app: external-service
+ egress:
+ - to:
+   - podSelector:
+       matchLabels:
+         app: worker
+   ports:
+   - port: 9090
+     protocol: TCP
+ policyTypes:
+   - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: worker-2-external-service
+ namespace: mca-app
+spec:
+ podSelector:
+   matchLabels:
+     app: worker
+ ingress:
+   - from:
+     - podSelector:
+         matchLabels:
+           app: external-service
+     ports:
+     - port: 9090
+       protocol: TCP
+ policyTypes:
+   - Ingress
