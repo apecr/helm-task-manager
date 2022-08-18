@@ -1,26 +1,26 @@
 ---
-#apiVersion: v1
-#kind: PersistentVolume
-#metadata:
-#  name: mongo-pv
-# # namespace: mca-app
-#  labels:
-#    app: mongo
-#    type: local
-#spec:
-#  storageClassName: mongodb
-#  accessModes:
-#    - ReadWriteOnce
-#  hostPath:
-#    path: "/db/mongo"
-#  capacity:
-#    storage: 3Gi
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: mongo-pv
+ namespace: mca-app
+ labels:
+   app: mongo
+   type: local
+spec:
+ storageClassName: mongodb
+ accessModes:
+   - ReadWriteOnce
+ hostPath:
+   path: "/db/mongo"
+ capacity:
+   storage: 3Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongo-pvc
- # namespace: mca-app
+  namespace: mca-app
   labels:
     app: mongo
 spec:
@@ -35,7 +35,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongo-deployment
- # namespace: mca-app
+  namespace: mca-app
 spec:
   selector:
     matchLabels:
@@ -62,7 +62,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongo
- # namespace: mca-app
+  namespace: mca-app
   labels:
     app: mongo
 spec:
