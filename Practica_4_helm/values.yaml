@@ -17,22 +17,20 @@ networkPolicies:
 services:
   mongodb:
     image: mongo
-    tag: "5.0.6-focal"
+    tag: "4.2.3"
   mysql:
     image: mysql
-    tag: "8.0.28"
+    tag: "8"
+    password: "mypassword"
   rabbitmq:
-    image: rabbitmq
-    tag: "3.9-management"
+    image: fjvela/urjc-fjvela-rabbitmq
+    tag: "1.0.0"
   server:
-    image: codeurjc/server
-    tag: "v1.0"
-  planner:
-    image: adagber/planner
-    tag: "v1.0"
-  toposervice:
-    image: codeurjc/toposervice
-    tag: "v1.0"
-  weatherservice:
-    image: codeurjc/weatherservice
-    tag: "v1.0"
+    image: fjvela/urjc-fjvela-server
+    tag: "1.0.5"
+  worker:
+    image: fjvela/urjc-fjvela-worker
+    tag: "1.0.1"
+  external:
+    image: fjvela/urjc-fjvela-external-service
+    tag: "1.0.1"

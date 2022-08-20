@@ -9,7 +9,9 @@ metadata:
    app: {{ .Release.Name }}-mysql
    type: local
 spec:
+  {{- if .Values.persistentVolumes.enableStorageClass }}
   storageClassName: {{ .Release.Name }}-{{ .Values.persistentVolumes.storageClasses.mysql }}
+  {{- end }}
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -17,6 +19,7 @@ spec:
   capacity:
     storage: 3Gi
 ---
+{{- if .Values.persistentVolumes.enableStorageClass }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -25,14 +28,12 @@ metadata:
   labels:
     app: {{ .Release.Name }}-mysql
 spec:
-  {{- if .Values.persistentVolumes.enableStorageClass }}
   storageClassName: {{ .Release.Name }}-{{ .Values.persistentVolumes.storageClasses.mysql }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  {{- if .Values.persistentVolumes.enableStorageClass }}
 {{- end }}
 {{- end }}
 ---
@@ -60,10 +61,13 @@ spec:
           value: database
         - name: MYSQL_USER
           value: myuser
-        - name: MYSQL_PASSWORD
-          value:  mypassword
         - name: MYSQL_ROOT_PASSWORD
           value: mypassword
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-mysql-secret
+              key: password
         volumeMounts:
         - name: {{ .Release.Name }}-mysql-persistent-storage
           mountPath: /var/lib/mysql
