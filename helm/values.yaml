@@ -21,7 +21,7 @@ services:
   mysql:
     image: mysql
     tag: "8"
-    password: "mypassword"
+#    password: "mypassword"
   rabbitmq:
     image: fjvela/urjc-fjvela-rabbitmq
     tag: "1.0.0"
