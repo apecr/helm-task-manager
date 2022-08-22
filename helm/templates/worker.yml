@@ -21,7 +21,7 @@ spec:
         - name: RABBITMQ_SERVER
           value: {{ .Release.Name }}-rabbitmq
         - name: UPPERCASE_GRPC_SERVER
-          value: static://external-service:9090
+          value: static://{{ .Release.Name }}-external-service:9090
         - name: MYSQL_SERVER
           value: {{ .Release.Name }}-mysql
         - name: MYSQL_DATABASE
