@@ -23,7 +23,7 @@ spec:
         - name: RABBITMQ_SERVER
           value: {{ .Release.Name }}-rabbitmq
         - name: MONGO_SERVER
-          value: mongo
+          value: {{ .Release.Name }}-mongo
         - name: MONGO_DATABASE
           value: database
         securityContext:
