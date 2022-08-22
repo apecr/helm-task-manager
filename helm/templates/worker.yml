@@ -19,7 +19,7 @@ spec:
         image: {{ .Values.services.worker.image }}:{{ .Values.services.worker.tag }}
         env:
         - name: RABBITMQ_SERVER
-          value: rabbitmq
+          value: {{ .Release.Name }}-rabbitmq
         - name: UPPERCASE_GRPC_SERVER
           value: static://external-service:9090
         - name: MYSQL_SERVER

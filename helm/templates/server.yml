@@ -21,7 +21,7 @@ spec:
           - containerPort: 8080
         env:
         - name: RABBITMQ_SERVER
-          value: rabbitmq
+          value: {{ .Release.Name }}-rabbitmq
         - name: MONGO_SERVER
           value: mongo
         - name: MONGO_DATABASE
