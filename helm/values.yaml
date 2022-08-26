@@ -1,10 +1,15 @@
 ingress:
+  # -- activate ingress for the application
   enabled: true
+  # -- host for the ingress
   host: "cluster-ip"
+  # -- type of service to publish the server app in case the ingress is not used.
   serviceType: LoadBalancer
 
 persistentVolumes:
+  # -- whether PersistenceVolumes are created or assumed to be already created in the cluster
   create: true
+  # -- whether PersistenceVolumes are created dynamically with a StorageClass
   enableStorageClass: true
   storageClasses:
     mysql: mysql
@@ -12,25 +17,35 @@ persistentVolumes:
     rabbit: rabbitmq
 
 networkPolicies:
+  # -- whether we apply NetworkPolicies or not
   enabled: false
 
 services:
   mongodb:
+    # -- Image to use for deploying MongoDB
     image: mongo
     tag: "4.2.3"
   mysql:
+    # -- Image to use for deploying MySQL
     image: mysql
     tag: "8"
-    password: "mypassword"
+    # -- MySQL user
+    username:
+    # -- MySQL password
+    password:
   rabbitmq:
+    # -- Image to use for deploying RabbitMQ
     image: fjvela/urjc-fjvela-rabbitmq
     tag: "1.0.0"
   server:
+    # -- Image to use for deploying Server application
     image: fjvela/urjc-fjvela-server
     tag: "1.0.5"
   worker:
+    # -- Image to use for deploying Worker application
     image: fjvela/urjc-fjvela-worker
     tag: "1.0.1"
   external:
+    # -- Image to use for deploying Externql Service application
     image: fjvela/urjc-fjvela-external-service
     tag: "1.0.1"

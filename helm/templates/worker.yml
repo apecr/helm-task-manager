@@ -27,7 +27,10 @@ spec:
         - name: MYSQL_DATABASE
           value: database
         - name: MYSQL_USER
-          value: myuser
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-mysql-secret
+              key: username
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
