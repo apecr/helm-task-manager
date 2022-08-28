@@ -67,10 +67,7 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           value: mypassword
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Release.Name }}-mysql-secret
-              key: password
+          value: {{ .Values.services.mysql.username }}
         volumeMounts:
         - name: {{ .Release.Name }}-mysql-persistent-storage
           mountPath: /var/lib/mysql

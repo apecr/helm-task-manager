@@ -2,7 +2,7 @@ ingress:
   # -- activate ingress for the application
   enabled: true
   # -- host for the ingress
-  host: "cluster-ip"
+  host: "kubernetes.docker.internal"
   # -- type of service to publish the server app in case the ingress is not used.
   serviceType: LoadBalancer
 
@@ -30,9 +30,9 @@ services:
     image: mysql
     tag: "8"
     # -- MySQL user
-    username:
+    username: myuser
     # -- MySQL password
-    password:
+    password: mypassword
   rabbitmq:
     # -- Image to use for deploying RabbitMQ
     image: fjvela/urjc-fjvela-rabbitmq

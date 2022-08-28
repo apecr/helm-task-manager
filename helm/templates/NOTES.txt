@@ -5,7 +5,7 @@ Thank you for installing {{ .Chart.Name }}.
 MySQL Credentials:
 
     Username      : {{ .Values.services.mysql.username }}
-    echo "Password      : $(kubectl get secret --namespace {{ .Release.Namespace }} {{{ .Release.Name }}-mysql-secret -o jsonpath="{.data.password}" | base64 --decode)"
+    echo "Password      : $(kubectl get secret --namespace {{ .Release.Namespace }} {{ .Release.Name }}-mysql-secret -o jsonpath="{.data.password}" | base64 --decode)"
 
 Your release is named {{ .Release.Name }}.
 
@@ -35,4 +35,5 @@ To learn more about the release, try:
 {{- else if contains "ClusterIP" .Values.ingress.serviceType }}
   The app is running with an ClusterIP method. Only you can access to the app inside the cluster.
   minikube ssh
+{{- end }}
 {{- end }}
