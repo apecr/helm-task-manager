@@ -12,8 +12,11 @@ persistentVolumes:
   # -- whether PersistenceVolumes are created dynamically with a StorageClass
   enableStorageClass: true
   storageClasses:
+    # -- storageClass name for MySQL
     mysql: mysql
+    # -- storageClass name for MongoDB
     mongo: mongodb
+    # -- storageClass name for RabbitMQ
     rabbit: rabbitmq
 
 networkPolicies:
@@ -24,10 +27,12 @@ services:
   mongodb:
     # -- Image to use for deploying MongoDB
     image: mongo
+    # -- Tag to use for deploying MongoDB docker image
     tag: "4.2.3"
   mysql:
     # -- Image to use for deploying MySQL
     image: mysql
+    # -- Tag to use for deploying MySQL docker image
     tag: "8"
     # -- MySQL user
     username: myuser
@@ -36,16 +41,20 @@ services:
   rabbitmq:
     # -- Image to use for deploying RabbitMQ
     image: fjvela/urjc-fjvela-rabbitmq
+    # -- Tag to use for deploying RabbitMQ docker image
     tag: "1.0.0"
   server:
     # -- Image to use for deploying Server application
     image: fjvela/urjc-fjvela-server
+    # -- Tag to use for deploying Server application docker image
     tag: "1.0.5"
   worker:
     # -- Image to use for deploying Worker application
     image: fjvela/urjc-fjvela-worker
+    # -- Tag to use for deploying Worker Service application docker image
     tag: "1.0.1"
   external:
-    # -- Image to use for deploying Externql Service application
+    # -- Image to use for deploying External Service application
     image: fjvela/urjc-fjvela-external-service
+    # -- Tag to use for deploying External Service application docker image
     tag: "1.0.1"
