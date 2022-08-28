@@ -5,7 +5,7 @@ Thank you for installing {{ .Chart.Name }}.
 MySQL Credentials:
 
     Username      : {{ .Values.services.mysql.username }}
-    echo "Password      : $(kubectl get secret --namespace {{ .Release.Namespace }} {{ .Release.Name }}-mysql-secret -o jsonpath="{.data.password}" | base64 --decode)"
+    echo "Password      : $(kubectl get secret --namespace mca-app {{ .Release.Name }}-mysql-secret -o jsonpath="{.data.password}" | base64 --decode)"
 
 Your release is named {{ .Release.Name }}.
 
@@ -24,7 +24,7 @@ To learn more about the release, try:
 {{- else if contains "NodePort" .Values.ingress.serviceType }}
   The app is running with an NodePort method. You must create a port forward.
   So open a new terminal:
-  kubectl port-forward service/{{ .Release.Namespace }}server-service 3000:3000
+  kubectl port-forward service/mca-app server-service 3000:3000
   
   In the browser paste the next url:
   http://localhost:3000
