@@ -59,7 +59,7 @@ minikube start --memory 8192 --cpus 4 --driver=hyperkit
 minikube addons enable ingress
 helm repo add alberto.eyo https://apecr.github.io/helm-task-manager/
 helm install task-manager-01 alberto.eyo/Practica_4_Recuperacion_helm
-helm upgrade pr4-helm -f helm/without-ingress.yml alberto.eyo/Practica_4_Recuperacion_helm
+helm upgrade task-manager-01 -f helm/without-ingress.yml alberto.eyo/Practica_4_Recuperacion_helm
 ```
 
 
