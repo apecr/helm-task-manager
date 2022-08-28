@@ -50,4 +50,9 @@ Para comprobar el correcto funcionamiento: se van aplicando cada una de las netw
 kubectl delete namespace mca-app
 ```
 
+```
+helm repo add httpd-server https://apecr.github.io/helm-task-manager/
+helm install task-manager-01 httpd-server/Practica_4_Recuperacion_helm
+```
+
 
