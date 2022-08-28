@@ -2,7 +2,7 @@ ingress:
   # -- activate ingress for the application
   enabled: true
   # -- host for the ingress
-  host: "kubernetes.docker.internal"
+  host: "cluster-ip"
   # -- type of service to publish the server app in case the ingress is not used.
   serviceType: LoadBalancer
 
