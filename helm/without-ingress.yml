@@ -1,3 +1,8 @@
 ingress:
   enabled: false
   serviceType: LoadBalancer
+
+services:
+  mysql:
+    password: mypassword
+    username: mysql-user
