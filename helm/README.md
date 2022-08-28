@@ -1,6 +1,5 @@
 # Practica_4_Recuperacion_helm
 
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/mca-03-02-practica4-recuperacion)](https://artifacthub.io/packages/search?repo=mca-03-02-practica4-recuperacion)
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.16.0](https://img.shields.io/badge/AppVersion-1.16.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes
@@ -11,7 +10,7 @@ A Helm chart for Kubernetes
 |-----|------|---------|-------------|
 | ingress.enabled | bool | `true` | activate ingress for the application |
 | ingress.host | string | `"cluster-ip"` | host for the ingress |
-| ingress.serviceType | string | `"LoadBalancer"` | type of service to publish the server app in case the ingress is not used. |
+| ingress.serviceType | string | `"NodePort"` | type of service to publish the server app in case the ingress is not used. |
 | networkPolicies.enabled | bool | `false` | whether we apply NetworkPolicies or not |
 | persistentVolumes.create | bool | `true` | whether PersistenceVolumes are created or assumed to be already created in the cluster |
 | persistentVolumes.enableStorageClass | bool | `true` | whether PersistenceVolumes are created dynamically with a StorageClass |
@@ -23,9 +22,8 @@ A Helm chart for Kubernetes
 | services.mongodb.image | string | `"mongo"` | Image to use for deploying MongoDB |
 | services.mongodb.tag | string | `"4.2.3"` |  |
 | services.mysql.image | string | `"mysql"` | Image to use for deploying MySQL |
-| services.mysql.password | string | `nil` | MySQL password |
 | services.mysql.tag | string | `"8"` |  |
-| services.mysql.username | string | `nil` | MySQL user |
+| services.mysql.username | string | `"myuser"` | MySQL user |
 | services.rabbitmq.image | string | `"fjvela/urjc-fjvela-rabbitmq"` | Image to use for deploying RabbitMQ |
 | services.rabbitmq.tag | string | `"1.0.0"` |  |
 | services.server.image | string | `"fjvela/urjc-fjvela-server"` | Image to use for deploying Server application |
