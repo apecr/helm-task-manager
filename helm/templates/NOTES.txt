@@ -19,7 +19,7 @@ To learn more about the release, try:
 2. Get the application URL by running these commands:
 {{- if .Values.ingress.enabled }}
   The app is running with an ingress method. You must checkout the port:
-  export PORT=$(kubectl get service ingress-nginx-controller -n ingress-nginx --output='jsonpath={.spec.ports[0].nodePort}')
+  export PORT=$(kubectl get ingresses {{ .Release.Name }}-multi-ingress -n mca-app --output='jsonpath={.spec.rules[0].http.paths[0].backend.service.port.number}')
    echo http://{{ .Values.ingress.host }}:$PORT
 {{- else if contains "NodePort" .Values.ingress.serviceType }}
   The app is running with an NodePort method. You must create a port forward.
