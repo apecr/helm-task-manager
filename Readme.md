@@ -1,3 +1,5 @@
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/mca-03-02-practica4-recuperacion)](https://artifacthub.io/packages/search?repo=mca-03-02-practica4-recuperacion)
+
 ### Ingress
 * Se realiza la configuración del servicio ingress para la url: http://cluster-ip/ en el archivo k8s\2.server.yml
 
