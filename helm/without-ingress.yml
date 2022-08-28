@@ -4,5 +4,5 @@ ingress:
 
 services:
   mysql:
-    password: mypassword
     username: mysql-user
+    password: mypassword

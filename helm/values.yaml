@@ -37,7 +37,7 @@ services:
     # -- MySQL user
     username: myuser
     # -- MySQL password
-    # password: mypassword
+    password:
   rabbitmq:
     # -- Image to use for deploying RabbitMQ
     image: fjvela/urjc-fjvela-rabbitmq

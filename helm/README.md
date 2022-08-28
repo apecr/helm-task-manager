@@ -22,7 +22,7 @@ A Helm chart for the mca task-manager app
 | services.mongodb.image | string | `"mongo"` | Image to use for deploying MongoDB |
 | services.mongodb.tag | string | `"4.2.3"` | Tag to use for deploying MongoDB docker image |
 | services.mysql.image | string | `"mysql"` | Image to use for deploying MySQL |
-| services.mysql.password | string | `"mypassword"` | MySQL password |
+| services.mysql.password | string | `nil` | MySQL password |
 | services.mysql.tag | string | `"8"` | Tag to use for deploying MySQL docker image |
 | services.mysql.username | string | `"myuser"` | MySQL user |
 | services.rabbitmq.image | string | `"fjvela/urjc-fjvela-rabbitmq"` | Image to use for deploying RabbitMQ |
