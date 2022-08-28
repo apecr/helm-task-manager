@@ -4,7 +4,7 @@ ingress:
   # -- host for the ingress
   host: "cluster-ip"
   # -- type of service to publish the server app in case the ingress is not used.
-  serviceType: LoadBalancer
+  serviceType: NodePort
 
 persistentVolumes:
   # -- whether PersistenceVolumes are created or assumed to be already created in the cluster

@@ -2,38 +2,34 @@ Thank you for installing {{ .Chart.Name }}.
 
 ** Please be patient while the chart is being deployed **
 
-MySQL Credentials:
+1. MySQL Credentials:
 
     Username      : {{ .Values.services.mysql.username }}
     echo "Password      : $(kubectl get secret --namespace mca-app {{ .Release.Name }}-mysql-secret -o jsonpath="{.data.password}" | base64 --decode)"
 
-Your release is named {{ .Release.Name }}.
+2. Your release is named {{ .Release.Name }}.
 
-To learn more about the release, try:
+3. To learn more about the release, try:
 
   $ helm status {{ .Release.Name }}
   $ helm get all {{ .Release.Name }}
 
-1. {{- if .Values.ingress.enabled }}
-
-2. Get the application URL by running these commands:
+4. Get the application URL by running these commands:
 {{- if .Values.ingress.enabled }}
-  The app is running with an ingress method. You must checkout the port:
-  export PORT=$(kubectl get ingresses {{ .Release.Name }}-multi-ingress -n mca-app --output='jsonpath={.spec.rules[0].http.paths[0].backend.service.port.number}')
-   echo http://{{ .Values.ingress.host }}:$PORT
+  The app is running with an ingress method. You must checkout the url:
+  open http://{{ .Values.ingress.host }}
 {{- else if contains "NodePort" .Values.ingress.serviceType }}
   The app is running with an NodePort method. You must create a port forward.
   So open a new terminal:
-  kubectl port-forward service/mca-app server-service 3000:3000
+  kubectl port-forward service/mca-app {{ .Release.Name }}-server 8080:8080
   
   In the browser paste the next url:
-  http://localhost:3000
+  http://localhost:8080
 {{- else if contains "LoadBalancer" .Values.ingress.serviceType }}
   The app is running with an LoadBalancer method. You must checkout the url:
   export URL=$(minikube service {{ .Release.Name }}-server-service --url)
   echo $URL
 {{- else if contains "ClusterIP" .Values.ingress.serviceType }}
-  The app is running with an ClusterIP method. Only you can access to the app inside the cluster.
+  The app i4s running with an ClusterIP method. Only you can access to the app inside the cluster.
   minikube ssh
-{{- end }}
 {{- end }}

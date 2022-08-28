@@ -52,9 +52,14 @@ Para comprobar el correcto funcionamiento: se van aplicando cada una de las netw
 kubectl delete namespace mca-app
 ```
 
+#### Arrancar el minikube y la chart
+
 ```
+minikube start --memory 8192 --cpus 4 --driver=hyperkit
+minikube addons enable ingress
 helm repo add httpd-server https://apecr.github.io/helm-task-manager/
 helm install task-manager-01 httpd-server/Practica_4_Recuperacion_helm
+helm upgrade pr4-helm -f helm/without-ingress.yml httpd-server/Practica_4_Recuperacion_helm
 ```
 
 
