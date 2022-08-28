@@ -5,12 +5,12 @@
 
 A Helm chart for Kubernetes
 
-#### Arrancar el minikube y la chart
+## Arrancar el minikube y la chart
 
 ```
 minikube start --memory 8192 --cpus 4 --driver=hyperkit
 minikube addons enable ingress
-helm repo add alberto.eyo https://apecr.github.io/helm-task-manager/
-helm install task-manager-01 alberto.eyo/Practica_4_Recuperacion_helm
-helm upgrade task-manager-01 -f helm/without-ingress.yml alberto.eyo/Practica_4_Recuperacion_helm
+helm repo add torres.eyo https://apecr.github.io/helm-task-manager/
+helm install task-manager-01 torres.eyo/Practica_4_Recuperacion_helm
+helm upgrade task-manager-01 -f helm/without-ingress.yml torres.eyo/Practica_4_Recuperacion_helm
 ```
