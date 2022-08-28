@@ -27,7 +27,7 @@ Thank you for installing {{ .Chart.Name }}.
   http://localhost:8080
 {{- else if contains "LoadBalancer" .Values.ingress.serviceType }}
   The app is running with an LoadBalancer method. You must checkout the url:
-  export URL=$(minikube service {{ .Release.Name }}-server --url)
+  export URL=$(minikube service {{ .Release.Name }}-server --url -n mca-app)
   echo $URL
 {{- else if contains "ClusterIP" .Values.ingress.serviceType }}
   The app i4s running with an ClusterIP method. Only you can access to the app inside the cluster.
