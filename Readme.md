@@ -11,6 +11,8 @@ En este caso solamente hemos configurado la password de MySQL porque el servicio
 
 Para no generar nuevas imágenes del `server` y el `external-service`, hemos decidido solamente configurar la password y el username de MySQL.
 
+La documentación del Helm está en el [siguiente fichero][1].
+
 ## Arrancar el minikube y la chart
 
 ```
@@ -20,3 +22,5 @@ helm repo add torres.eyo https://apecr.github.io/helm-task-manager/
 helm install task-manager-01 torres.eyo/Practica_4_Recuperacion_helm
 helm upgrade task-manager-01 -f helm/without-ingress.yml torres.eyo/Practica_4_Recuperacion_helm
 ```
+
+[1]: helm/README.md
