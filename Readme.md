@@ -31,7 +31,7 @@ En este caso solamente hemos configurado la password de MySQL porque el servicio
 
 Para no generar nuevas imágenes del `server` y el `external-service`, hemos decidido solamente configurar la password y el username de MySQL.
 
-La documentación del Helm está en el [siguiente fichero][1].
+La documentación del Helm está en el [siguiente fichero][2].
 
 ### Arrancar el minikube y la chart
 
