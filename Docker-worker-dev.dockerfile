@@ -26,4 +26,4 @@ RUN chmod +x /usr/bin/wait-for-it.sh
 
 WORKDIR /app
 COPY --from=builder ./src/target/*.jar .
-CMD java -jar p3-worker-0.0.1-SNAPSHOT.jar
+CMD java -jar p3-worker-0.0.2-SNAPSHOT.jar

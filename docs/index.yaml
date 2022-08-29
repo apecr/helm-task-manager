@@ -3,9 +3,19 @@ entries:
   Practica_4_Recuperacion_helm:
   - apiVersion: v2
     appVersion: '>1.0.0'
-    created: "2022-08-28T13:36:28.368166+02:00"
+    created: "2022-08-29T12:13:15.927729+02:00"
     description: A Helm chart for the mca task-manager app
-    digest: 4af91d84636ff9f14c4056f6ad6138e98371ede16cc7f314ae5c775f346a8b7c
+    digest: 607e90e5051f79716b5effb44312811dbcae17817f60fcc6fdc5f5fb4bd9754a
+    name: Practica_4_Recuperacion_helm
+    type: application
+    urls:
+    - Practica_4_Recuperacion_helm-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: '>1.0.0'
+    created: "2022-08-29T12:13:15.92699+02:00"
+    description: A Helm chart for the mca task-manager app
+    digest: 9c34fa78bea81e1ecd5475ce1d0656f879e202673aa94c29a20e3af8ddbf3002
     name: Practica_4_Recuperacion_helm
     type: application
     urls:
@@ -13,12 +23,12 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-28T13:36:28.365738+02:00"
+    created: "2022-08-29T12:13:15.925661+02:00"
     description: A Helm chart for Kubernetes
-    digest: 68aa839f9e98638ef485a9a65920c3c9d1f10a58c763107b66ffc8e610a79cbb
+    digest: 0596af37980f3792d7352eb6b962533f7bcf9bbb8a7ba80905b9c15ed5f173ae
     name: Practica_4_Recuperacion_helm
     type: application
     urls:
     - Practica_4_Recuperacion_helm-0.1.0.tgz
     version: 0.1.0
-generated: "2022-08-28T13:36:28.363963+02:00"
+generated: "2022-08-29T12:13:15.923981+02:00"
